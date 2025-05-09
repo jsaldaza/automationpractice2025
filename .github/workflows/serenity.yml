@@ -33,7 +33,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Run Serenity Tests (Headless Chrome)
-        run: ./gradlew clean test --no-daemon -Dwebdriver.driver=chrome -Dchrome.headless=true -Dchrome.switches="--no-sandbox,--disable-dev-shm-usage"
+        run: ./gradlew clean test --no-daemon
 
       - name: Archive Serenity Report
         uses: actions/upload-artifact@main
