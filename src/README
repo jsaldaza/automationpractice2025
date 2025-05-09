@@ -1,0 +1,104 @@
+# 🧪 AutomationPractice 2025
+
+Automatización profesional con Serenity BDD + Screenplay Pattern
+
+---
+
+## 🚀 Propósito
+
+Este repositorio es un framework profesional de automatización de pruebas funcionales basado en:
+
+* Serenity BDD 4.2.22
+* Patrón Screenplay
+* Selenium 4.32.0
+* Cucumber + Gherkin
+* JUnit 4
+
+Aplicado sobre el sitio: [AutomationPractice Demo](http://www.automationpractice.pl/index.php)
+
+---
+
+## 🧱 Estructura del Proyecto
+
+```
+src
+├── main
+│   └── java/co.com.automationpractice2025
+│       ├── interactions      # Acciones customizadas (ej: esperar carga, abrir navegador)
+│       ├── questions         # Validaciones o consultas a la UI
+│       ├── tasks             # Acciones de negocio (login, registrarse)
+│       ├── userinterfaces    # PageObjects con Targets (elementos web)
+│       ├── utils             # Utilidades generales (selección de driver)
+├── test
+│   └── java/co.com.automationpractice2025
+│       ├── runners           # Clase de ejecución con Cucumber
+│       ├── stepdefinitions  # Mapeo de pasos Gherkin
+├── test/resources
+    └── features/login        # Escenarios BDD en Gherkin
+```
+
+---
+
+## ✅ Escenario funcional implementado
+
+### `login_successful.feature`
+
+```gherkin
+Scenario: Login to Automation Practice. Successful login with valid credentials
+  Given that Juan wants to access the Automation Practice page
+  When he logs in with valid credentials
+  Then he should see his account dashboard
+```
+
+🔍 Este escenario:
+
+* Abre el navegador
+* Realiza login con credenciales válidas
+* Espera a que cargue el dashboard
+* Valida que se muestre "MY ACCOUNT"
+
+---
+
+## ⚙️ Ejecución
+
+### Desde terminal:
+
+```bash
+./gradlew clean test
+```
+
+Serenity abre el navegador (Chrome por defecto) y ejecuta los escenarios definidos en `features/login`.
+
+---
+
+## 🔍 Tecnologías utilizadas
+
+* Java 17+
+* Gradle 8.4+
+* Serenity BDD
+* Selenium 4
+* Cucumber JVM
+* JUnit 4
+* SLF4J + Logback
+
+---
+
+## 📌 Hito alcanzado
+
+> Navegador se levanta correctamente, login exitoso, flujo estable usando Screenplay, esperando elementos correctamente con `WaitUntil`, y validando con `Question` personalizada.
+
+---
+
+## 🛠️ Siguiente paso
+
+Implementar el escenario:
+
+```gherkin
+Scenario: Create account with valid data
+```
+
+> Este flujo implicará:
+>
+> * Llenado de formularios con datos aleatorios
+> * Validación de mensaje de registro exitoso
+> * Uso de `Task` compuesta y `Model`

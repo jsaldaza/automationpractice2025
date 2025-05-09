@@ -1,0 +1,31 @@
+### Build ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### Serenity Reports ###
+target/
+.serenity/
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+out/
+
+### VS Code ###
+.vscode/
+
+### Eclipse ###
+.classpath
+.project
+.settings/
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Logs ###
+*.log
+
+### Test Output ###
+/test-output/

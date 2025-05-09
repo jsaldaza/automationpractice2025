@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group = 'co.com.automationpractice2025'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url = "https://plugins.gradle.org/m2/" }
+}
+
+ext {
+    serenityVersion = '4.2.22'
+    serenityCucumberVersion = '4.2.22'
+}
+
+dependencies {
+    // 🎯 Núcleo Serenity
+    implementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-junit:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion"
+    implementation "net.serenity-bdd:serenity-ensure:$serenityVersion"
+
+    // 🎯 Screenplay y WebDriver específico para patrón Screenplay
+    implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
+
+    // 🎯 Selenium 4 — necesario para WebDriver moderno
+    implementation 'org.seleniumhq.selenium:selenium-java:4.32.0'
+
+    // 🎯 Reportes avanzados
+    testImplementation "net.serenity-bdd:serenity-reports:$serenityVersion"
+
+    // 🎯 Logging (recomendado por Serenity)
+    implementation 'org.slf4j:slf4j-api:2.0.17'
+    implementation 'ch.qos.logback:logback-classic:1.5.18'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    systemProperties = System.properties
+    maxParallelForks = Runtime.runtime.availableProcessors()
+    systemProperty 'serenity.reports', 'single-page-html'
+}
+
+// 🚨 Permite continuar con otros tests aunque falle uno
+gradle.startParameter.continueOnFailure = true
