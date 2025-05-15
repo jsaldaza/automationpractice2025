@@ -11,10 +11,10 @@ import static net.serenitybdd.core.Serenity.getWebdriverManager;
 
 public class Hook {
 
-    WebDriver driver = getWebdriverManager().getWebdriver(Utilities.getDriver());
-
     @Before
     public void setScenario() {
+        System.out.println("[HOOK] Starting browser via Serenity WebDriver Manager...");
+        WebDriver driver = getWebdriverManager().getWebdriver(Utilities.getDriver());
         OnStage.setTheStage(Cast.whereEveryoneCan(BrowseTheWeb.with(driver)));
     }
 }
