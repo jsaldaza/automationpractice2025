@@ -11,7 +11,7 @@ public class UserBuilder {
     private String city = "Medellin";
     private String postcode = "00000";
     private String phone = "1234567890";
-    private String email = "test919@gmail.com";
+    private String email = generateRandomEmail();
     private String birthDay = "7"; // valor por defecto, puede ajustarse según test
     private String birthMonth = "5"; // mayo
     private String birthYear = "1990";
