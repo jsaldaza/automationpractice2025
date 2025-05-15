@@ -1,45 +1,45 @@
 # 🧪 AutomationPractice 2025
 
-Automatización profesional con Serenity BDD + Screenplay Pattern
+Professional automation using Serenity BDD + Screenplay Pattern
 
 ---
 
-## 🚀 Propósito
+## 🚀 Purpose
 
-Este repositorio es un framework profesional de automatización de pruebas funcionales basado en:
+This repository is a professional test automation framework based on:
 
 * Serenity BDD 4.2.22
-* Patrón Screenplay
+* Screenplay Pattern
 * Selenium 4.32.0
 * Cucumber + Gherkin
 * JUnit 4
 
-Aplicado sobre el sitio: [AutomationPractice Demo](http://www.automationpractice.pl/index.php)
+Applied to the demo site: [AutomationPractice Demo](http://www.automationpractice.pl/index.php)
 
 ---
 
-## 🧱 Estructura del Proyecto
+## 🧱 Project Structure
 
 ```
 src
 ├── main
 │   └── java/co.com.automationpractice2025
-│       ├── interactions      # Acciones customizadas (ej: esperar carga, abrir navegador)
-│       ├── questions         # Validaciones o consultas a la UI
-│       ├── tasks             # Acciones de negocio (login, registrarse)
-│       ├── userinterfaces    # PageObjects con Targets (elementos web)
-│       ├── utils             # Utilidades generales (selección de driver)
+│       ├── interactions      # Custom actions (e.g., wait for load, open browser)
+│       ├── questions         # UI validations or queries
+│       ├── tasks             # Business actions (login, register)
+│       ├── userinterfaces    # PageObjects with Targets (web elements)
+│       └── utils             # General utilities (driver selection)
 ├── test
 │   └── java/co.com.automationpractice2025
-│       ├── runners           # Clase de ejecución con Cucumber
-│       ├── stepdefinitions  # Mapeo de pasos Gherkin
-├── test/resources
-    └── features/login        # Escenarios BDD en Gherkin
+│       ├── runners           # Execution classes using Cucumber
+│       └── stepdefinitions   # Gherkin step mappings
+└── test/resources
+    └── features/login        # BDD scenarios written in Gherkin
 ```
 
 ---
 
-## ✅ Escenario funcional implementado
+## ✅ Implemented Functional Scenario
 
 ### `login_successful.feature`
 
@@ -50,28 +50,28 @@ Scenario: Login to Automation Practice. Successful login with valid credentials
   Then he should see his account dashboard
 ```
 
-🔍 Este escenario:
+🔍 This scenario:
 
-* Abre el navegador
-* Realiza login con credenciales válidas
-* Espera a que cargue el dashboard
-* Valida que se muestre "MY ACCOUNT"
+* Opens the browser
+* Logs in with valid credentials
+* Waits for the dashboard to load
+* Validates that "MY ACCOUNT" is displayed
 
 ---
 
-## ⚙️ Ejecución
+## ⚙️ Execution
 
-### Desde terminal:
+### From terminal:
 
 ```bash
 ./gradlew clean test
 ```
 
-Serenity abre el navegador (Chrome por defecto) y ejecuta los escenarios definidos en `features/login`.
+Serenity launches the browser (Chrome by default) and runs the scenarios defined in `features/login`.
 
 ---
 
-## 🔍 Tecnologías utilizadas
+## 🔍 Technologies Used
 
 * Java 17+
 * Gradle 8.4+
@@ -83,22 +83,22 @@ Serenity abre el navegador (Chrome por defecto) y ejecuta los escenarios definid
 
 ---
 
-## 📌 Hito alcanzado
+## 📌 Achieved Milestone
 
-> Navegador se levanta correctamente, login exitoso, flujo estable usando Screenplay, esperando elementos correctamente con `WaitUntil`, y validando con `Question` personalizada.
+> Browser launches correctly, login is successful, flow is stable using Screenplay, elements are properly waited with `WaitUntil`, and validated using a custom `Question`.
 
 ---
 
-## 🛠️ Siguiente paso
+## 🛠️ Next Step
 
-Implementar el escenario:
+Implement the scenario:
 
 ```gherkin
 Scenario: Create account with valid data
 ```
 
-> Este flujo implicará:
+> This flow will include:
 >
-> * Llenado de formularios con datos aleatorios
-> * Validación de mensaje de registro exitoso
-> * Uso de `Task` compuesta y `Model`
+> * Filling forms with random data
+> * Validating success registration message
+> * Using composite `Task` and a `Model`
