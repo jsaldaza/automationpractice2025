@@ -1,16 +1,19 @@
 package co.com.automationpractice2025.stepdefinitions;
 
 import co.com.automationpractice2025.interactions.OpenBrowser;
-import co.com.automationpractice2025.interactions.WaitForAccountPage;
-import co.com.automationpractice2025.questions.ValidateMyAccount;
+import co.com.automationpractice2025.questions.ValidateLoginDashboard;
 import co.com.automationpractice2025.tasks.Login;
+import co.com.automationpractice2025.userinterfaces.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import static org.hamcrest.Matchers.containsString;
 
 
 public class LoginStepDefinitions {
@@ -24,16 +27,18 @@ public class LoginStepDefinitions {
 
     @When("he logs in with valid credentials")
     public void performLogin() {
-        juan.attemptsTo(Login.withCredentials("testuser@mail.com", "123456"));
+        juan.attemptsTo(Login.withCredentials("test14@mail.com", "123456"));
     }
 
     @Then("he should see his account dashboard")
     public void verifyMyAccountPage() {
-        juan.attemptsTo(WaitForAccountPage.toLoad());
-        juan.should(seeThat(ValidateMyAccount.title(), text -> {
-            System.out.println("[ASSERTION CHECK] Texto recibido: " + text);
-            return true; // No falla por ahora, solo imprime
-        }));
+        juan.attemptsTo(
+                WaitUntil.the(LoginPage.AUTHENTICATION_HEADER, isVisible()).forNoMoreThan(10).seconds()
+        );
 
+        juan.should(
+                seeThat(ValidateLoginDashboard.authenticationErrorTitle(), containsString("Authentication"))
+        );
     }
+
 }

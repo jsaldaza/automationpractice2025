@@ -26,10 +26,11 @@ public class LoginPage extends PageObject {
     public static final Target SUBMIT_BUTTON = Target.the("sign in submit button")
             .located(By.id("SubmitLogin"));
 
-    public static final Target ACCOUNT_HEADERI = Target.the("account dashboard header")
-            .located(By.cssSelector("h1"));
-
     public static final Target ACCOUNT_HEADER = Target.the("account validation")
-            .locatedBy("//h1[normalize-space()='Create an account']");
-    //h1[normalize-space()='Create an account']
+            .locatedBy("//h1[contains(@class,'page-heading') and contains(.,'My account')]");
+
+    public static final Target AUTHENTICATION_HEADER = Target.the("authentication error header")
+            .locatedBy("//h1[contains(normalize-space(),'Authentication')]");
+
+
 }
