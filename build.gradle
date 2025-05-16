@@ -19,26 +19,29 @@ ext {
 }
 
 dependencies {
-    // 🎯 Núcleo de Serenity BDD
+    // Núcleo de Serenity BDD
     implementation "net.serenity-bdd:serenity-core:$serenityVersion"
     implementation "net.serenity-bdd:serenity-junit:$serenityVersion"
     implementation "net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion"
     implementation "net.serenity-bdd:serenity-ensure:$serenityVersion"
 
-    // 🎯 Screenplay + WebDriver
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+
+    //  Screenplay + WebDriver
     implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
     implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
 
-    // 🎯 Anotaciones (incluye @DefaultUrl, @FindBy, etc.)
+    //  Anotaciones (incluye @DefaultUrl, @FindBy, etc.)
     implementation "net.serenity-bdd:serenity-model:$serenityVersion"
 
-    // 🎯 Selenium moderno
+    //  Selenium moderno
     implementation 'org.seleniumhq.selenium:selenium-java:4.32.0'
 
-    // 🎯 Reportes
+    //  Reportes
     testImplementation "net.serenity-bdd:serenity-reports:$serenityVersion"
 
-    // 🎯 Logging
+    //  Logging
     implementation 'org.slf4j:slf4j-api:2.0.17'
     implementation 'ch.qos.logback:logback-classic:1.5.18'
 }

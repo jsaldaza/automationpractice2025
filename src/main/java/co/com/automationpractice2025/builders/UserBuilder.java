@@ -12,9 +12,10 @@ public class UserBuilder {
     private String postcode = "00000";
     private String phone = "1234567890";
     private String email = generateRandomEmail();
-    private String birthDay = "7"; // valor por defecto, puede ajustarse según test
-    private String birthMonth = "5"; // mayo
+    private String birthDay = "7";
+    private String birthMonth = "5";
     private String birthYear = "1990";
+    private String gender = "male";
 
     public static UserBuilder defaultUser() {
         return new UserBuilder();
@@ -65,11 +66,6 @@ public class UserBuilder {
         return this;
     }
 
-    private static String generateRandomEmail() {
-        long timestamp = System.currentTimeMillis();
-        return "test_user_" + timestamp + "@mail.com";
-    }
-
     public UserBuilder withBirthMonth(String birthMonth) {
         this.birthMonth = birthMonth;
         return this;
@@ -80,14 +76,21 @@ public class UserBuilder {
         return this;
     }
 
-    private String gender = "male";
-
     public UserBuilder withGender(String gender) {
         this.gender = gender;
         return this;
     }
 
     public UserModel build() {
-        return new UserModel(firstName, lastName, password, address, city, postcode, phone, email, birthDay, birthMonth, birthYear, gender);
+        return new UserModel(
+                firstName, lastName, password, address,
+                city, postcode, phone, email,
+                birthDay, birthMonth, birthYear, gender
+        );
+    }
+
+    private static String generateRandomEmail() {
+        long timestamp = System.currentTimeMillis();
+        return "test_user_" + timestamp + "@mail.com";
     }
 }
