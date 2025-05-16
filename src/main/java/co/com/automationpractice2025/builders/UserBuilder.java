@@ -1,25 +1,28 @@
 package co.com.automationpractice2025.builders;
 
 import co.com.automationpractice2025.models.UserModel;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+import lombok.experimental.FieldDefaults;
 
+@NoArgsConstructor(staticName = "defaultUser")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Accessors(chain = true)
 public class UserBuilder {
 
-    private String firstName = "Juan";
-    private String lastName = "Salazar";
-    private String password = "123456";
-    private String address = "Automation St. 123";
-    private String city = "Medellin";
-    private String postcode = "00000";
-    private String phone = "1234567890";
-    private String email = generateRandomEmail();
-    private String birthDay = "7";
-    private String birthMonth = "5";
-    private String birthYear = "1990";
-    private String gender = "male";
-
-    public static UserBuilder defaultUser() {
-        return new UserBuilder();
-    }
+    String firstName = "Juan";
+    String lastName = "Salazar";
+    String password = "123456";
+    String address = "Automation St. 123";
+    String city = "Medellin";
+    String postcode = "00000";
+    String phone = "1234567890";
+    String email = generateRandomEmail();
+    String birthDay = "7";
+    String birthMonth = "5";
+    String birthYear = "1990";
+    String gender = "male";
 
     public UserBuilder withFirstName(String firstName) {
         this.firstName = firstName;
