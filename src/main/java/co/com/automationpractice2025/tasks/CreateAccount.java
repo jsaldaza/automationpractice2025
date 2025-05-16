@@ -57,4 +57,12 @@ public class CreateAccount {
                 WaitFor.seconds(6)
         );
     }
+
+    public static Task registerNewUser(UserModel user) {
+        return Task.where("{0} completes full registration process",
+                goToRegistrationPage(user),
+                withPersonalData(user)
+        );
+    }
+
 }

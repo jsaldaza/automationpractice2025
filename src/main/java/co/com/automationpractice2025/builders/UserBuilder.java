@@ -67,7 +67,7 @@ public class UserBuilder {
 
     private static String generateRandomEmail() {
         long timestamp = System.currentTimeMillis();
-        return "testuser" + timestamp + "@mail.com";
+        return "test_user_" + timestamp + "@mail.com";
     }
 
     public UserBuilder withBirthMonth(String birthMonth) {

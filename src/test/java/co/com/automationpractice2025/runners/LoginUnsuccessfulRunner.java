@@ -10,5 +10,5 @@ import org.junit.runner.RunWith;
         glue = "co.com.automationpractice2025.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class LoginRunner {
+public class LoginUnsuccessfulRunner {
 }

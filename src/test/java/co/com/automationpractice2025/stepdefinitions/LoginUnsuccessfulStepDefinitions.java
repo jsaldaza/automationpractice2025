@@ -15,8 +15,7 @@ import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.hamcrest.Matchers.containsString;
 
-
-public class LoginStepDefinitions {
+public class LoginUnsuccessfulStepDefinitions {
 
     private final Actor juan = OnStage.theActorCalled("Juan");
 
@@ -25,13 +24,13 @@ public class LoginStepDefinitions {
         juan.attemptsTo(OpenBrowser.ofautomationpracticeTest());
     }
 
-    @When("he logs in with valid credentials")
-    public void performLogin() {
-        juan.attemptsTo(Login.withCredentials("test14@mail.com", "123456"));
+    @When("he logs in with invalid credentials")
+    public void performLoginWithInvalidCredentials() {
+        juan.attemptsTo(Login.withCredentials("invalid_user@mail.com", "wrongpassword"));
     }
 
-    @Then("he should see his account dashboard")
-    public void verifyMyAccountPage() {
+    @Then("he should see an authentication error")
+    public void shouldSeeAuthenticationError() {
         juan.attemptsTo(
                 WaitUntil.the(LoginPage.AUTHENTICATION_HEADER, isVisible()).forNoMoreThan(10).seconds()
         );
@@ -40,5 +39,4 @@ public class LoginStepDefinitions {
                 seeThat(ValidateLoginDashboard.authenticationErrorTitle(), containsString("Authentication"))
         );
     }
-
 }
