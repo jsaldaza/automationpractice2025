@@ -27,6 +27,8 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
+
 
     //  Screenplay + WebDriver
     implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"

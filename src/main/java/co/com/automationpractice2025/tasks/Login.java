@@ -7,7 +7,6 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 
-
 public class Login implements Task {
 
     private final String email;
@@ -29,6 +28,7 @@ public class Login implements Task {
                 Enter.theValue(email).into(LoginPage.EMAIL_INPUT),
                 Enter.theValue(password).into(LoginPage.PASSWORD_INPUT),
                 Click.on(LoginPage.SUBMIT_BUTTON)
+
         );
     }
 }

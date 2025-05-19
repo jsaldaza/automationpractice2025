@@ -37,8 +37,6 @@ public class CreateAccountPage {
             .located(By.id("SubmitCreate"));
     public static final Target REGISTER_BUTTON = Target.the("Register button")
             .located(By.id("submitAccount"));
-    public static final Target SUCCESS_ALERT = Target.the("success account creation alert")
-            .located(By.cssSelector(".alert.alert-success"));
 
 
 }

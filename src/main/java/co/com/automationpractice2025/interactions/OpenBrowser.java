@@ -5,7 +5,7 @@ import net.serenitybdd.screenplay.actions.Open;
 
 public class OpenBrowser {
 
-    public static Performable ofautomationpracticeTest() {
+    public static Performable onAutomationPracticeHomePage() {
         return Open.url("http://www.automationpractice.pl/index.php");
     }
 }

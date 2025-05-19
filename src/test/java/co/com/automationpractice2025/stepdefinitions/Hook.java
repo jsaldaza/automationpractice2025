@@ -16,5 +16,8 @@ public class Hook {
         System.out.println("[HOOK] Starting browser via Serenity WebDriver Manager...");
         WebDriver driver = getWebdriverManager().getWebdriver(Utilities.getDriver());
         OnStage.setTheStage(Cast.whereEveryoneCan(BrowseTheWeb.with(driver)));
+
+        // Crear actor global
+        OnStage.theActorCalled("Juan");
     }
 }

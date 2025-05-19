@@ -24,6 +24,34 @@ public class UserBuilder {
     String birthYear = "1990";
     String gender = "male";
 
+    public UserModel build() {
+        return new UserModel(
+                firstName, lastName, password, address,
+                city, postcode, phone, email,
+                birthDay, birthMonth, birthYear, gender
+        );
+    }
+
+    // ====== Perfiles adicionales ======
+
+    public static UserBuilder invalidUser() {
+        return defaultUser()
+                .withEmail("not_an_email")
+                .withPassword("123");
+    }
+
+    public static UserBuilder userWithEmptyPassword() {
+        return defaultUser()
+                .withPassword("");
+    }
+
+    public static UserBuilder userWithCustomEmail(String customEmail) {
+        return defaultUser()
+                .withEmail(customEmail);
+    }
+
+    // ====== Setters encadenados ======
+
     public UserBuilder withFirstName(String firstName) {
         this.firstName = firstName;
         return this;
@@ -84,13 +112,7 @@ public class UserBuilder {
         return this;
     }
 
-    public UserModel build() {
-        return new UserModel(
-                firstName, lastName, password, address,
-                city, postcode, phone, email,
-                birthDay, birthMonth, birthYear, gender
-        );
-    }
+    // ====== Generador de email único ======
 
     private static String generateRandomEmail() {
         long timestamp = System.currentTimeMillis();
