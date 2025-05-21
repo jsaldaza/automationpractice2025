@@ -95,9 +95,5 @@ Las versiones de las dependencias clave están centralizadas en el archivo `grad
 ## 🙌 Autor
 
 **Juan Andrés Saldarriaga Z.**  
-QA Automation Engineer | Serenity • Java • Screenplay  
-[LinkedIn](https://www.linkedin.com/in/jsaldaza) | jsaldaza@gmail.com
 
 ---
-
-¿Listo para automatizar con elegancia? 🎯

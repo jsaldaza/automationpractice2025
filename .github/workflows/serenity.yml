@@ -27,10 +27,6 @@ jobs:
           sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
           google-chrome --version
 
-      - name: Set ChromeDriver version
-        run: |
-          echo "webdriver.chrome.driver.version=114.0.5735.90" >> serenity.properties
-
       - name: Grant execute permission to Gradle Wrapper
         run: chmod +x ./gradlew
 
