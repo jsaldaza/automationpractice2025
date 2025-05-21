@@ -47,7 +47,7 @@ jobs:
         run: ./gradlew clean test --no-daemon
 
       - name: Archive Serenity Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@main
         with:
           name: serenity-report
           path: target/site/serenity
