@@ -2,8 +2,8 @@ package co.com.automationpractice2025.stepdefinitions;
 
 import co.com.automationpractice2025.builders.UserBuilder;
 import co.com.automationpractice2025.models.UserModel;
-import co.com.automationpractice2025.tasks.CreateAccount;
-import co.com.automationpractice2025.utils.UserDataReader;
+import co.com.automationpractice2025.tasks.account.FillOutPersonalInfo;
+import co.com.automationpractice2025.tasks.account.NavigateToRegistrationPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import net.serenitybdd.screenplay.Actor;
@@ -15,29 +15,38 @@ import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class CreateAccountStepDefinitions {
 
-    private final Actor juan = OnStage.theActorInTheSpotlight();
     private UserModel user;
 
-    // Opción 1: Desde perfil JSON
     @Given("that Juan wants to create a new account using {string}")
     public void createUserFromProfile(String profileKey) {
+        Actor juan = OnStage.theActorInTheSpotlight();
+
         if ("randomUser".equalsIgnoreCase(profileKey)) {
-            user = UserBuilder.defaultUser().build(); // correo único dinámico
+            user = UserBuilder.defaultUser().build();
         } else {
-            user = UserDataReader.getUser(profileKey);
+            user = co.com.automationpractice2025.utils.UserDataReader.getUser(profileKey);
         }
-        juan.attemptsTo(CreateAccount.registerNewUser(user));
+
+        juan.attemptsTo(
+                NavigateToRegistrationPage.using(user),
+                FillOutPersonalInfo.using(user)
+        );
     }
 
-    // Opción 2: Sin parámetro (default user aleatorio)
     @Given("that Juan creates a new account")
     public void createDefaultUser() {
+        Actor juan = OnStage.theActorInTheSpotlight();
         user = UserBuilder.defaultUser().build();
-        juan.attemptsTo(CreateAccount.registerNewUser(user));
+
+        juan.attemptsTo(
+                NavigateToRegistrationPage.using(user),
+                FillOutPersonalInfo.using(user)
+        );
     }
 
     @Then("he should see the My Account dashboard")
     public void shouldSeeAccountPage() {
+        Actor juan = OnStage.theActorInTheSpotlight();
         juan.should(
                 seeThat(title(), equalToIgnoringCase("MY ACCOUNT"))
         );

@@ -13,9 +13,10 @@ repositories {
     }
 }
 
+// Versiones ahora leídas desde gradle.properties
 ext {
-    serenityVersion = '4.2.22'
-    serenityCucumberVersion = '4.2.22'
+    serenityVersion = findProperty('serenityVersion') ?: '4.2.22'
+    serenityCucumberVersion = findProperty('serenityCucumberVersion') ?: '4.2.22'
 }
 
 dependencies {
@@ -25,25 +26,28 @@ dependencies {
     implementation "net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion"
     implementation "net.serenity-bdd:serenity-ensure:$serenityVersion"
 
+    // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
+
+    // JSON y WebDriverManager
     testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:6.1.0'
 
-
-    //  Screenplay + WebDriver
+    // Screenplay Pattern + WebDriver
     implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
     implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
 
-    //  Anotaciones (incluye @DefaultUrl, @FindBy, etc.)
+    // PageObjects y anotaciones
     implementation "net.serenity-bdd:serenity-model:$serenityVersion"
 
-    //  Selenium moderno
+    // Selenium moderno
     implementation 'org.seleniumhq.selenium:selenium-java:4.32.0'
 
-    //  Reportes
+    // Reportes
     testImplementation "net.serenity-bdd:serenity-reports:$serenityVersion"
 
-    //  Logging
+    // Logging estructurado
     implementation 'org.slf4j:slf4j-api:2.0.17'
     implementation 'ch.qos.logback:logback-classic:1.5.18'
 }
@@ -58,5 +62,5 @@ test {
     systemProperty 'serenity.reports', 'single-page-html'
 }
 
-// 🔄 Continúa ejecución incluso si hay fallos
+// Permite que siga ejecutando tareas aunque ocurran errores
 gradle.startParameter.continueOnFailure = true

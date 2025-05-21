@@ -1,23 +1,27 @@
 package co.com.automationpractice2025.stepdefinitions;
 
-import co.com.automationpractice2025.utils.Utilities;
 import io.cucumber.java.Before;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
+import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
 import org.openqa.selenium.WebDriver;
-
-import static net.serenitybdd.core.Serenity.getWebdriverManager;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Hook {
 
-    @Before
-    public void setScenario() {
-        System.out.println("[HOOK] Starting browser via Serenity WebDriver Manager...");
-        WebDriver driver = getWebdriverManager().getWebdriver(Utilities.getDriver());
-        OnStage.setTheStage(Cast.whereEveryoneCan(BrowseTheWeb.with(driver)));
+    @Before(order = 0)
+    public void setTheStage() {
+        OnStage.setTheStage(Cast.ofStandardActors());
 
-        // Crear actor global
-        OnStage.theActorCalled("Juan");
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        ThucydidesWebDriverSupport.useDriver(driver);
+
+        Actor juan = OnStage.theActorCalled("Juan");
+        juan.can(BrowseTheWeb.with(driver)); // ✅ Asignar la habilidad correctamente
     }
+
 }

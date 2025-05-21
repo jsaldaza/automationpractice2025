@@ -1,4 +1,5 @@
-package co.com.automationpractice2025.tasks;
+
+package co.com.automationpractice2025.tasks.login;
 
 import co.com.automationpractice2025.userinterfaces.LoginPage;
 import net.serenitybdd.screenplay.Actor;
@@ -24,11 +25,10 @@ public class Login implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Click.on(LoginPage.SIGN_IN_BUTTON),
-                Enter.theValue(email).into(LoginPage.EMAIL_INPUT),
-                Enter.theValue(password).into(LoginPage.PASSWORD_INPUT),
-                Click.on(LoginPage.SUBMIT_BUTTON)
-
+            Click.on(LoginPage.SIGN_IN_BUTTON),
+            Enter.theValue(email).into(LoginPage.EMAIL_INPUT),
+            Enter.theValue(password).into(LoginPage.PASSWORD_INPUT),
+            Click.on(LoginPage.SUBMIT_BUTTON)
         );
     }
 }

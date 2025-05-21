@@ -2,7 +2,7 @@ package co.com.automationpractice2025.stepdefinitions;
 
 import co.com.automationpractice2025.interactions.OpenBrowser;
 import co.com.automationpractice2025.questions.LoginErrorMessage;
-import co.com.automationpractice2025.tasks.Login;
+import co.com.automationpractice2025.tasks.login.Login;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
