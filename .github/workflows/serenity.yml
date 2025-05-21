@@ -21,17 +21,16 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Install Chrome (via apt)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          google-chrome --version
+      - name: Set up Chrome (reliable)
+        uses: browser-actions/setup-chrome@v1
 
-      - name: Setup environment for Headless Chrome
+      - name: Print Chrome version
+        run: google-chrome --version
+
+      - name: Export Headless Chrome for WebDriverManager
         run: |
-          echo "CHROME_BIN=/usr/bin/google-chrome" >> $GITHUB_ENV
+          echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
           echo "headless.mode=true" >> $GITHUB_ENV
-          echo "webdriver.chrome.driver=chromedriver" >> serenity.properties
 
       - name: Grant execute permission to Gradle Wrapper
         run: chmod +x ./gradlew
@@ -45,11 +44,10 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Run Serenity Tests (Headless Chrome)
-        run: |
-          ./gradlew clean test --no-daemon
+        run: ./gradlew clean test --no-daemon
 
       - name: Archive Serenity Report
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v3
         with:
           name: serenity-report
           path: target/site/serenity
