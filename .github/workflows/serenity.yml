@@ -21,13 +21,15 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Set up Chrome (reliable)
+      - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Print Chrome version
-        run: google-chrome --version
+      - name: Confirm Chrome installation
+        run: |
+          echo "Chrome binary path: $CHROME_BIN"
+          $CHROME_BIN --version
 
-      - name: Export Headless Chrome for WebDriverManager
+      - name: Set environment variables for headless Chrome
         run: |
           echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
           echo "headless.mode=true" >> $GITHUB_ENV
