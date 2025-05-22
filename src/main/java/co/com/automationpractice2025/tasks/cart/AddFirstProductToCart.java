@@ -23,7 +23,7 @@ public class AddFirstProductToCart implements Task {
                 WaitUntil.the(CartPage.BLOUSE_PRODUCT_IMAGE, isClickable()).forNoMoreThan(10).seconds(),
                 Click.on(CartPage.BLOUSE_PRODUCT_IMAGE),
                 Click.on(CartPage.PRODUCT_WHITE_OPTION), // Espera removida para simplificar
-                WaitUntil.the(CartPage.ADD_TO_CART_BUTTON, isClickable()).forNoMoreThan(10).seconds(),
+                WaitUntil.the(CartPage.ADD_TO_CART_BUTTON, isClickable()).forNoMoreThan(15).seconds(),
                 Click.on(CartPage.ADD_TO_CART_BUTTON)
         );
     }

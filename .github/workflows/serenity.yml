@@ -48,8 +48,14 @@ jobs:
       - name: Run Serenity Tests (Headless Chrome)
         run: ./gradlew clean test --no-daemon
 
+      - name: Upload Test Reports as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: build/reports/tests/test/index.html  # Ajusta esta ruta si el reporte tiene otro nombre o ubicación
+
       - name: Archive Serenity Report
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v3
         with:
           name: serenity-report
           path: target/site/serenity
