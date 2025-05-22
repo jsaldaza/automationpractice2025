@@ -48,7 +48,7 @@ jobs:
       - name: 🚀 Run Serenity Tests (Headless Chrome)
         run: ./gradlew clean test --continue --no-daemon
         continue-on-error: true
-        
+
       - name: Install Allure CLI
         run: |
           wget https://github.com/allure-framework/allure2/releases/download/2.25.0/allure-2.25.0.tgz
@@ -79,7 +79,7 @@ jobs:
           path: build/reports/tests/test
 
       - name: Deploy Allure Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@main
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: allure-report
