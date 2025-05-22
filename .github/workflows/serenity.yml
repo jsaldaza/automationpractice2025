@@ -59,20 +59,26 @@ jobs:
         run: |
           allure generate target/site/serenity --clean -o allure-report
 
-      - name: Upload Allure Report
-        uses: actions/upload-artifact@v3
+      - name: Upload Allure Report (artifact)
+        uses: actions/upload-artifact@main
         with:
           name: allure-report
           path: allure-report
 
       - name: Upload Serenity Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@main
         with:
           name: serenity-report
           path: target/site/serenity
 
       - name: Upload Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@main
         with:
           name: test-report
           path: build/reports/tests/test
+
+      - name: Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report
