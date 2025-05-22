@@ -33,6 +33,7 @@ dependencies {
     // JSON y WebDriverManager
     testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
     testImplementation 'io.github.bonigarcia:webdrivermanager:6.1.0'
+    testImplementation "org.junit.vintage:junit-vintage-engine:5.12.2"
 
     // Screenplay Pattern + WebDriver
     implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
@@ -64,3 +65,42 @@ test {
 
 // Permite que siga ejecutando tareas aunque ocurran errores
 gradle.startParameter.continueOnFailure = true
+
+// ✅ Tarea personalizada para ejecutar pruebas y generar el reporte Allure
+task testWithAllure {
+    group = "Verification"
+    description = "Ejecuta pruebas, genera y abre el reporte Allure, incluso si hay fallos"
+
+    doLast {
+        // Ejecutar pruebas con tolerancia a errores
+        def result = exec {
+            commandLine 'cmd', '/c', 'gradlew.bat clean test --continue'
+            ignoreExitValue = true
+        }
+
+        // Borrar reporte anterior
+        file("allure-report").deleteDir()
+
+        // Generar nuevo reporte Allure
+        exec {
+            commandLine 'cmd', '/c', 'allure generate target/site/serenity --clean -o allure-report'
+        }
+
+        // Abrir reporte en navegador
+        exec {
+            commandLine 'cmd', '/c', 'allure open allure-report'
+        }
+
+        // Mostrar estado final
+        if (result.exitValue != 0) {
+            println "\n⚠️ Algunas pruebas fallaron, pero el reporte Allure fue generado y abierto correctamente.\n"
+        } else {
+            println "\n✅ Todas las pruebas pasaron y el reporte Allure fue abierto con éxito.\n"
+        }
+    }
+}
+
+
+
+
+

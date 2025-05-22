@@ -24,15 +24,15 @@ jobs:
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Confirm Chrome installation
-        run: |
-          echo "Chrome binary path: $CHROME_BIN"
-          $CHROME_BIN --version
-
       - name: Set environment variables for headless Chrome
         run: |
           echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
           echo "headless.mode=true" >> $GITHUB_ENV
+
+      - name: Confirm Chrome installation
+        run: |
+          echo "Chrome binary path: $CHROME_BIN"
+          $CHROME_BIN --version
 
       - name: Grant execute permission to Gradle Wrapper
         run: chmod +x ./gradlew
@@ -46,16 +46,33 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Run Serenity Tests (Headless Chrome)
-        run: ./gradlew clean test --no-daemon
+        run: ./gradlew clean test --continue --no-daemon
 
-      - name: Archive Serenity Report
-        uses: actions/upload-artifact@main
+      - name: Install Allure CLI
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.25.0/allure-2.25.0.tgz
+          tar -xvzf allure-2.25.0.tgz
+          sudo mv allure-2.25.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+
+      - name: Generate Allure Report
+        run: |
+          allure generate target/site/serenity --clean -o allure-report
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
+
+      - name: Upload Serenity Report
+        uses: actions/upload-artifact@v3
         with:
           name: serenity-report
           path: target/site/serenity
 
-      - name: Archive Test Reports
-        uses: actions/upload-artifact@main
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
         with:
           name: test-report
           path: build/reports/tests/test

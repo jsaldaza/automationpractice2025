@@ -1,32 +1,48 @@
-### Build ###
+# ======================
+# BUILD Y GRADLE
+# ======================
 .gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 
-### Serenity Reports ###
+# ======================
+# SERENITY / TEST OUTPUT
+# ======================
 target/
 .serenity/
+allure-report/
+allure-results/
+test-output/
 
-### IntelliJ IDEA ###
+# ======================
+# IDEs
+# ======================
+
+# IntelliJ
 .idea/
 *.iml
 out/
 
-### VS Code ###
+# VSCode
 .vscode/
 
-### Eclipse ###
+# Eclipse
 .classpath
 .project
 .settings/
 
-### OS ###
+# ======================
+# SISTEMA OPERATIVO
+# ======================
 .DS_Store
 Thumbs.db
 
-### Logs ###
+# ======================
+# LOGS / TEMPORALES
+# ======================
 *.log
-
-### Test Output ###
-/test-output/
-/target/
+*.tmp
+*.bak
+*.swp
+*.orig
+*.rej
