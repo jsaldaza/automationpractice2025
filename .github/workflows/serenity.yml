@@ -49,7 +49,7 @@ jobs:
         run: ./gradlew clean test --no-daemon
 
       - name: Upload Test Reports as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@main
         with:
           name: test-reports
           path: build/reports/tests/test/index.html  # Ajusta esta ruta si el reporte tiene otro nombre o ubicación
