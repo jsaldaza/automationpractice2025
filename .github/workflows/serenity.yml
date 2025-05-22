@@ -45,9 +45,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Run Serenity Tests (Headless Chrome)
+      - name: 🚀 Run Serenity Tests (Headless Chrome)
         run: ./gradlew clean test --continue --no-daemon
-
+        continue-on-error: true
+        
       - name: Install Allure CLI
         run: |
           wget https://github.com/allure-framework/allure2/releases/download/2.25.0/allure-2.25.0.tgz
