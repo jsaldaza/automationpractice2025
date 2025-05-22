@@ -55,7 +55,7 @@ jobs:
           path: build/reports/tests/test/index.html  # Ajusta esta ruta si el reporte tiene otro nombre o ubicación
 
       - name: Archive Serenity Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@main
         with:
           name: serenity-report
           path: target/site/serenity
