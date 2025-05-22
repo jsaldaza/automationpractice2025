@@ -1,4 +1,3 @@
-
 package co.com.automationpractice2025.stepdefinitions;
 
 import io.cucumber.java.Before;
@@ -24,11 +23,13 @@ public class Hook {
         // Detecta si está corriendo en un entorno CI (como GitHub Actions)
         String isCI = System.getenv("CI");
 
+
         if ("true".equalsIgnoreCase(isCI)) {
             options.addArguments("--headless=new");
             options.addArguments("--window-size=1920,1080");
         } else {
-            options.addArguments("--start-maximized"); // Solo aplica localmente
+            options.addArguments("--start-maximized");
+            options.addArguments("--disable-features=ChromeWhatsNewUI"); // Previene overlays molestos
         }
 
         options.addArguments("--no-sandbox");

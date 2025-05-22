@@ -27,10 +27,7 @@ public class CreateAccountStepDefinitions {
             user = co.com.automationpractice2025.utils.UserDataReader.getUser(profileKey);
         }
 
-        juan.attemptsTo(
-                NavigateToRegistrationPage.using(user),
-                FillOutPersonalInfo.using(user)
-        );
+        juan.attemptsTo(NavigateToRegistrationPage.using(user), FillOutPersonalInfo.using(user));
     }
 
     @Given("that Juan creates a new account")
@@ -38,17 +35,12 @@ public class CreateAccountStepDefinitions {
         Actor juan = OnStage.theActorInTheSpotlight();
         user = UserBuilder.defaultUser().build();
 
-        juan.attemptsTo(
-                NavigateToRegistrationPage.using(user),
-                FillOutPersonalInfo.using(user)
-        );
+        juan.attemptsTo(NavigateToRegistrationPage.using(user), FillOutPersonalInfo.using(user));
     }
 
     @Then("he should see the My Account dashboard")
     public void shouldSeeAccountPage() {
         Actor juan = OnStage.theActorInTheSpotlight();
-        juan.should(
-                seeThat(title(), equalToIgnoringCase("MY ACCOUNT"))
-        );
+        juan.should(seeThat(title(), equalToIgnoringCase("MY ACCOUNT")));
     }
 }
